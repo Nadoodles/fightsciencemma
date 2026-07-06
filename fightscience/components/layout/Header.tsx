@@ -45,7 +45,12 @@ export function Header() {
             </Link>
           ))}
           <div className="max-sm:w-full max-sm:px-6 max-sm:py-4">
-            <Button href="/#contact" size="sm" className="max-sm:block max-sm:w-full max-sm:text-center" onClick={() => setOpen(false)}>
+            <Button
+              href="/free-trial"
+              size="sm"
+              className="max-sm:block max-sm:w-full max-sm:text-center"
+              onClick={() => setOpen(false)}
+            >
               Free Trial
             </Button>
           </div>

@@ -3,8 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
-import { StatCard } from "@/components/ui/StatCard";
-import { ProgramCard } from "@/components/cards/ProgramCard";
+import { ProgramIcon } from "@/components/ui/ProgramIcon";
 import { CoachCard } from "@/components/cards/CoachCard";
 import { TestimonialCard } from "@/components/cards/TestimonialCard";
 import { programs } from "@/lib/programs";
@@ -12,7 +11,49 @@ import { coaches } from "@/lib/coaches";
 import { testimonials } from "@/lib/testimonials";
 import { SITE } from "@/lib/constants";
 
+const programBenefits: Record<string, string> = {
+  "mma-striking":
+    "Build sharp hands, kicks, defense, footwork, and fight-ready conditioning.",
+  "brazilian-jiu-jitsu":
+    "Learn ground control, escapes, submissions, and practical self-defense.",
+  "fighter-fit":
+    "Train like a fighter with scalable strength and cardio circuits.",
+  "kids-classes":
+    "Confidence, discipline, anti-bullying skills, and respectful competition.",
+  "mma-team-training":
+    "Invite-only training for amateur and professional fighters.",
+};
+
+const featuredCoachSlugs = ["ian-harris", "julian-rush", "leo-hirai"];
+
+const proofPoints = [
+  {
+    stat: "2003",
+    label: "Fight Science method begins",
+  },
+  {
+    stat: "75%",
+    label: "Fight team win rate",
+  },
+  {
+    stat: "2017",
+    label: "Mid-City LA gym opens",
+  },
+];
+
+const whyPoints = [
+  "Scientific, technical coaching instead of random workouts.",
+  "Beginner-friendly room with experienced fighters training alongside everyday members.",
+  "MMA, BJJ, striking, kids classes, fitness, and team training under one roof.",
+  "A family-friendly culture built around humility, accountability, and respect.",
+];
+
 export default function Home() {
+  const featuredCoaches = coaches.filter((coach) =>
+    featuredCoachSlugs.includes(coach.slug),
+  );
+  const featuredReviews = testimonials.slice(0, 3);
+
   return (
     <>
       {/* HERO */}
@@ -29,147 +70,163 @@ export default function Home() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(90deg, rgba(8,8,8,.92) 0%, rgba(8,8,8,.75) 35%, rgba(8,8,8,.45) 100%)",
+              "linear-gradient(90deg, rgba(8,8,8,.92) 0%, rgba(8,8,8,.76) 36%, rgba(8,8,8,.42) 100%)",
           }}
         />
-        <Container className="relative z-[2] max-w-[640px]">
+        <Container className="relative z-[2] max-w-[720px]">
+          <Eyebrow>Mid-City Los Angeles</Eyebrow>
           <h1 className="mb-7 font-head text-[clamp(4rem,9vw,7rem)] leading-[0.92] tracking-wide">
-            Fight Science MMA
+            Train Smarter. Fight Better.
           </h1>
-          <p className="max-w-[560px] text-[1.15rem] text-text-muted">
-            MMA, Brazilian Jiu-Jitsu, Striking &amp; Fitness, taught with a
+          <p className="max-w-[580px] text-[1.15rem] text-text-muted">
+            MMA, Brazilian Jiu-Jitsu, Striking &amp; Fitness taught with a
             scientific, technical, no-ego approach by a fight team that has
-            produced champions from Tijuana to the UFC.
+            produced champions for more than two decades.
           </p>
-          <div className="mt-2 flex flex-wrap gap-4">
-            <Button href="/#contact" variant="accent" size="lg">
+          <div className="mt-7 flex flex-wrap gap-4">
+            <Button href="/free-trial" variant="accent" size="lg">
               Start Your Free Trial
             </Button>
             <Button href="/#programs" variant="ghost" size="lg">
-              See Programs
+              Explore Programs
             </Button>
           </div>
         </Container>
       </section>
 
-      {/* METHOD / SCIENTIFIC APPROACH */}
-      <section className="bg-bg-alt py-16 md:py-[90px]">
-        <Container className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-[60px]">
-          <div>
-            <Eyebrow>Technical &amp; Scientific Methods</Eyebrow>
-            <SectionHeading>The Science of Fighting</SectionHeading>
-            <p className="mb-4 text-text-muted">
-              We have spent decades studying and refining the techniques of
-              fighting, striking, grappling, weight-loss, self-defense, mental
-              toughness, and fitness. We are perpetual students of all these
-              things and approach each of them from a scientific, fact-based,
-              and intellectual point of view.
-            </p>
-            <p className="mb-4 text-text-muted">
-              Our goal is a family-friendly gym in our neighborhood that teaches
-              cutting-edge, scientifically proven methods of self-protection,
-              fighting and fitness &mdash; promoting health, humility,
-              self-respect, and respect for others, while continuing to build
-              the best MMA fight team in the world.
-            </p>
-            <Button href="/#contact" variant="outline">
-              Request Info
-            </Button>
-          </div>
-          <div className="grid grid-cols-2 gap-5">
-            <StatCard num="2003" label="Est. under Coach Ian Harris" />
-            <StatCard num="75%" label="Fight team win rate" />
-            <StatCard num="20+" label="Years producing champions" />
-            <StatCard num="2017" label="Mid-City LA gym opens" />
-          </div>
-        </Container>
-      </section>
-
-      {/* HISTORY / ABOUT US */}
-      <section id="history" className="scroll-mt-[90px] py-16 md:py-[90px]">
-        <Container className="grid grid-cols-1 items-start gap-8 md:grid-cols-[220px_1fr] lg:grid-cols-[380px_1fr] lg:gap-[50px]">
-          <div className="w-full max-w-[280px] md:max-w-none lg:sticky lg:top-[110px]">
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#202020] md:aspect-[3/4] lg:aspect-auto lg:h-[calc(100vh-180px)] lg:max-h-[640px]">
-              <Image
-                src="/images/temp.jpg"
-                alt="Fight Science coach cornering a fighter before a bout"
-                fill
-                sizes="(max-width: 768px) 100vw, 380px"
-                className="object-cover"
-              />
-            </div>
-          </div>
-          <div>
-            <SectionHeading>Our Story</SectionHeading>
-            <p className="mb-4 text-[1.05rem] text-text-muted">
-              The Fight Science method began in 2003. Ian Harris began teaching
-              his hybrid, martial arts compiled from years of training Boxing,
-              Muay Thai, Brazilian Jiu-Jitsu, Wrestling, Jeet Kune Do, Kenpo,
-              Wing Chun and many other martial arts as a realistic self-defense
-              class out of a karate school in Culver City, CA. UFC and what we
-              know of today as Mixed Martial Arts (MMA) was still in very early
-              stages, with very few rules and no actual name for the sport (MMA
-              had not been popularized).
-            </p>
-            <p className="mb-4 text-[1.05rem] text-text-muted">
-              Ian, being a &ldquo;science nerd&rdquo; always took a very
-              scientific, technical approach to fighting and felt what he was
-              teaching was less an art and more a science, so he began calling
-              his style &ldquo;Fight Science.&rdquo; Several students expressed
-              an interest to fight, but MMA was not yet legal in California.
-              Several of the students and Ian would travel to Tijuana on
-              weekends to fight. Shortly thereafter the term MMA was popularized
-              and it became legal and sanctioned in California. Two of those
-              original students Chad George and Julian Rush eventually became 2
-              of the first champions under California-sanctioned MMA.
-            </p>
-            <p className="mb-4 text-[1.05rem] text-text-muted">
-              Julian and Ian have maintained a strong relationship and continued
-              to refine and coach for nearly 15 years and over the years have
-              had fighters in every major and local organization there is,
-              producing several champions both pro and amateur, for shows like
-              RFA, CXF, Tachi Palace, BAMMA, U of MMA, Spar Star, TFA and many
-              more. In Aug 2017, they along with another one of the early
-              students and fighters, Leo Hirai, opened the first ever Fight
-              Science gym in Mid City, L.A.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* PROGRAMS */}
+      {/* PROGRAMS PREVIEW */}
       <section id="programs" className="scroll-mt-[90px] py-16 md:py-[90px]">
         <Container>
-          <Eyebrow center>Train With Us</Eyebrow>
-          <SectionHeading center>Programs</SectionHeading>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+            <div>
+              <SectionHeading>Programs</SectionHeading>
+            </div>
+            <p className="max-w-2xl text-text-muted lg:justify-self-end">
+              Whether you are starting from zero, getting your kid into martial
+              arts, chasing fitness, or preparing to compete, Fight Science has
+              a clear training lane for you.
+            </p>
+          </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {programs.map((program) => (
-              <ProgramCard key={program.slug} program={program} />
+              <article
+                key={program.slug}
+                className="group overflow-hidden border border-border-soft bg-card transition-colors hover:border-accent"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-bg-alt">
+                  <Image
+                    src={program.image}
+                    alt={`${program.title} training at Fight Science MMA`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover opacity-80 transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+                  <div className="absolute bottom-5 left-5 text-accent">
+                    <ProgramIcon name={program.icon} className="h-12 w-12" />
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-head text-3xl tracking-wide">
+                    {program.title}
+                  </h3>
+                  <p className="mt-3 text-text-muted">
+                    {programBenefits[program.slug]}
+                  </p>
+                </div>
+              </article>
             ))}
           </div>
 
           <div className="mt-11 text-center">
             <Button href="/programs" variant="accent" size="lg">
-              View All Programs &amp; Photos &rarr;
+              View Program Details &rarr;
             </Button>
           </div>
         </Container>
       </section>
 
-      {/* TEAM */}
+      {/* WHY FIGHT SCIENCE */}
       <section
-        id="team"
+        id="why-fight-science"
         className="scroll-mt-[90px] bg-bg-alt py-16 md:py-[90px]"
       >
-        <Container>
-          <Eyebrow center>Meet Our Team</Eyebrow>
-          <SectionHeading center>Coaches &amp; Fighters</SectionHeading>
+        <Container className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-[60px]">
+          <div>
+            <Eyebrow>Why Fight Science</Eyebrow>
+            <SectionHeading>This Isn&apos;t Random Martial Arts</SectionHeading>
+            <p className="mb-6 text-text-muted">
+              The Fight Science method began in 2003 when Ian Harris started
+              teaching a realistic self-defense system built from Boxing, Muay
+              Thai, Brazilian Jiu-Jitsu, Wrestling, Jeet Kune Do, Kenpo, Wing
+              Chun, and years of fight-team coaching.
+            </p>
+            <p className="mb-8 text-text-muted">
+              The goal is simple: teach practical fighting, fitness, and
+              self-protection through technical coaching, humility, and a
+              family-friendly team culture.
+            </p>
+            <Button href="/free-trial" variant="outline">
+              Find Your First Class
+            </Button>
+          </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {coaches.map((coach) => (
+          <div className="grid gap-5">
+            <div className="grid grid-cols-3 gap-3">
+              {proofPoints.map((point) => (
+                <div
+                  key={point.stat}
+                  className="border border-border-soft bg-card p-5"
+                >
+                  <span className="block font-head text-4xl text-accent">
+                    {point.stat}
+                  </span>
+                  <span className="mt-2 block text-sm text-text-muted">
+                    {point.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="border border-border-soft bg-card p-6">
+              <ul className="space-y-4">
+                {whyPoints.map((point) => (
+                  <li key={point} className="flex gap-3 text-text-muted">
+                    <span className="mt-2 h-2 w-2 shrink-0 bg-accent" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* FEATURED COACHES */}
+      <section id="team" className="scroll-mt-[90px] py-16 md:py-[90px]">
+        <Container>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <Eyebrow>Led By The Original Team</Eyebrow>
+              <SectionHeading>Featured Coaches</SectionHeading>
+            </div>
+            <p className="max-w-2xl text-text-muted lg:justify-self-end">
+              Ian, Julian, and Leo represent the roots of Fight Science: the
+              method, the fight team, and the gym culture that still shape the
+              room today.
+            </p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {featuredCoaches.map((coach) => (
               <CoachCard key={coach.slug} coach={coach} />
             ))}
+          </div>
+
+          <div className="mt-11 text-center">
+            <Button href="/coaches" variant="outline" size="lg">
+              Meet The Full Team &rarr;
+            </Button>
           </div>
         </Container>
       </section>
@@ -177,21 +234,22 @@ export default function Home() {
       {/* TESTIMONIALS */}
       <section
         id="testimonials"
-        className="scroll-mt-[90px] py-16 md:py-[90px]"
+        className="scroll-mt-[90px] bg-bg-alt py-16 md:py-[90px]"
       >
         <Container>
-          <Eyebrow center>What Others Have To Say</Eyebrow>
-          <SectionHeading center>Reviews</SectionHeading>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <Eyebrow>Google Reviews</Eyebrow>
+              <SectionHeading>
+                <span>Trusted By Families, Fighters & Beginners</span>
+              </SectionHeading>
+            </div>
+          </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {testimonials.map((testimonial, i) => (
+          <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {featuredReviews.map((testimonial) => (
               <TestimonialCard
                 key={testimonial.author}
-                className={
-                  i === testimonials.length - 1 && testimonials.length % 2 === 1
-                    ? "md:col-span-2"
-                    : undefined
-                }
                 testimonial={testimonial}
               />
             ))}
@@ -199,64 +257,34 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact" className="scroll-mt-[90px] py-16 md:py-[90px]">
-        <Container className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-[60px]">
+      {/* FREE TRIAL CTA */}
+      <section id="free-trial" className="scroll-mt-[90px] py-16 md:py-[90px]">
+        <Container className="grid grid-cols-1 items-center gap-10 border border-border-soft bg-card p-8 md:p-12 lg:grid-cols-[1fr_auto]">
           <div>
-            <Eyebrow>Get Started</Eyebrow>
-            <SectionHeading>Come Train With Us</SectionHeading>
-            <p className="text-text-muted">
-              Your first class is on us. Reach out and we&rsquo;ll get you set
-              up with a free trial class.
+            <Eyebrow>Ready To Start?</Eyebrow>
+            <SectionHeading>Try Your First Class Free</SectionHeading>
+            <p className="max-w-2xl text-text-muted">
+              Tell us what you&apos;re looking for and Fight Science will help
+              you find the right first class. You can also call{" "}
+              <a
+                className="text-text hover:text-accent"
+                href={`tel:${SITE.phoneHref}`}
+              >
+                {SITE.phone}
+              </a>{" "}
+              or email{" "}
+              <a
+                className="text-text hover:text-accent"
+                href={`mailto:${SITE.email}`}
+              >
+                {SITE.email}
+              </a>
+              .
             </p>
-            <ul className="mb-8 mt-6 list-none">
-              <li className="flex flex-col gap-0.5 border-b border-border py-3.5">
-                <strong className="font-head text-[0.85rem] tracking-wide text-accent">
-                  Email
-                </strong>
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="text-text hover:text-accent"
-                >
-                  {SITE.email}
-                </a>
-              </li>
-              <li className="flex flex-col gap-0.5 border-b border-border py-3.5">
-                <strong className="font-head text-[0.85rem] tracking-wide text-accent">
-                  Call
-                </strong>
-                <a
-                  href={`tel:${SITE.phoneHref}`}
-                  className="text-text hover:text-accent"
-                >
-                  {SITE.phone}
-                </a>
-              </li>
-              <li className="flex flex-col gap-0.5 border-b border-border py-3.5">
-                <strong className="font-head text-[0.85rem] tracking-wide text-accent">
-                  Find Us
-                </strong>
-                <span className="text-text-muted">{SITE.address}</span>
-              </li>
-            </ul>
-            <Button
-              href={`mailto:${SITE.email}?subject=Free%20Trial%20Request`}
-              size="lg"
-            >
-              Request Your Free Trial
-            </Button>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[10px] border border-border bg-bg-card">
-            <iframe
-              title="Fight Science MMA location"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(
-                SITE.address,
-              )}&output=embed`}
-              className="h-full w-full border-0"
-            />
-          </div>
+          <Button href="/free-trial" size="lg" className="text-center">
+            Request Free Trial
+          </Button>
         </Container>
       </section>
     </>
