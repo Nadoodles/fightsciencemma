@@ -16,12 +16,20 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative flex min-h-[92vh] items-center px-0 py-[120px] md:py-0">
+      <section className="relative flex min-h-[92vh] items-center overflow-hidden px-0 py-[120px] md:py-0">
+        <Image
+          src="/images/front.jpg"
+          alt="Fight Science coach cornering a fighter before a bout"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[75%_center]"
+        />
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.60) 35%, rgba(0,0,0,.45) 100%), url('/images/hero-training.jpg')",
+              "linear-gradient(90deg, rgba(8,8,8,.92) 0%, rgba(8,8,8,.75) 35%, rgba(8,8,8,.45) 100%)",
           }}
         />
         <Container className="relative z-[2] max-w-[640px]">
@@ -29,9 +37,9 @@ export default function Home() {
             Fight Science MMA
           </h1>
           <p className="max-w-[560px] text-[1.15rem] text-text-muted">
-            MMA, Brazilian Jiu-Jitsu, Striking &amp; Fitness, taught with a scientific,
-            technical, no-ego approach by a fight team that has produced champions from Tijuana
-            to the UFC.
+            MMA, Brazilian Jiu-Jitsu, Striking &amp; Fitness, taught with a
+            scientific, technical, no-ego approach by a fight team that has
+            produced champions from Tijuana to the UFC.
           </p>
           <div className="mt-2 flex flex-wrap gap-4">
             <Button href="/#contact" variant="accent" size="lg">
@@ -51,16 +59,18 @@ export default function Home() {
             <Eyebrow>Technical &amp; Scientific Methods</Eyebrow>
             <SectionHeading>The Science of Fighting</SectionHeading>
             <p className="mb-4 text-text-muted">
-              We have spent decades studying and refining the techniques of fighting, striking,
-              grappling, weight-loss, self-defense, mental toughness, and fitness. We are
-              perpetual students of all these things and approach each of them from a
-              scientific, fact-based, and intellectual point of view.
+              We have spent decades studying and refining the techniques of
+              fighting, striking, grappling, weight-loss, self-defense, mental
+              toughness, and fitness. We are perpetual students of all these
+              things and approach each of them from a scientific, fact-based,
+              and intellectual point of view.
             </p>
             <p className="mb-4 text-text-muted">
-              Our goal is a family-friendly gym in our neighborhood that teaches cutting-edge,
-              scientifically proven methods of self-protection, fighting and fitness &mdash;
-              promoting health, humility, self-respect, and respect for others, while continuing
-              to build the best MMA fight team in the world.
+              Our goal is a family-friendly gym in our neighborhood that teaches
+              cutting-edge, scientifically proven methods of self-protection,
+              fighting and fitness &mdash; promoting health, humility,
+              self-respect, and respect for others, while continuing to build
+              the best MMA fight team in the world.
             </p>
             <Button href="/#contact" variant="outline">
               Request Info
@@ -77,45 +87,51 @@ export default function Home() {
 
       {/* HISTORY / ABOUT US */}
       <section id="history" className="scroll-mt-[90px] py-16 md:py-[90px]">
-        <Container className="grid grid-cols-1 items-start gap-8 md:grid-cols-[220px_1fr] lg:grid-cols-[320px_1fr] lg:gap-[50px]">
-          <div className="relative aspect-[3/2] w-full max-w-[280px] overflow-hidden bg-[#202020] md:max-w-none">
-            <Image
-              src="/images/front.jpg"
-              alt="Fight Science coach cornering a fighter before a bout"
-              fill
-              sizes="(max-width: 768px) 100vw, 320px"
-              className="object-cover"
-            />
+        <Container className="grid grid-cols-1 items-start gap-8 md:grid-cols-[220px_1fr] lg:grid-cols-[380px_1fr] lg:gap-[50px]">
+          <div className="w-full max-w-[280px] md:max-w-none lg:sticky lg:top-[110px]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#202020] md:aspect-[3/4] lg:aspect-auto lg:h-[calc(100vh-180px)] lg:max-h-[640px]">
+              <Image
+                src="/images/temp.jpg"
+                alt="Fight Science coach cornering a fighter before a bout"
+                fill
+                sizes="(max-width: 768px) 100vw, 380px"
+                className="object-cover"
+              />
+            </div>
           </div>
           <div>
-            <Eyebrow>Our Story</Eyebrow>
-            <SectionHeading>History</SectionHeading>
+            <SectionHeading>Our Story</SectionHeading>
             <p className="mb-4 text-[1.05rem] text-text-muted">
-              The Fight Science method began in 2003. Ian Harris began teaching his hybrid,
-              martial arts compiled from years of training Boxing, Muay Thai, Brazilian
-              Jiu-Jitsu, Wrestling, Jeet Kune Do, Kenpo, Wing Chun and many other martial arts as
-              a realistic self-defense class out of a karate school in Culver City, CA. UFC and
-              what we know of today as Mixed Martial Arts (MMA) was still in very early stages,
-              with very few rules and no actual name for the sport (MMA had not been
-              popularized).
+              The Fight Science method began in 2003. Ian Harris began teaching
+              his hybrid, martial arts compiled from years of training Boxing,
+              Muay Thai, Brazilian Jiu-Jitsu, Wrestling, Jeet Kune Do, Kenpo,
+              Wing Chun and many other martial arts as a realistic self-defense
+              class out of a karate school in Culver City, CA. UFC and what we
+              know of today as Mixed Martial Arts (MMA) was still in very early
+              stages, with very few rules and no actual name for the sport (MMA
+              had not been popularized).
             </p>
             <p className="mb-4 text-[1.05rem] text-text-muted">
-              Ian, being a &ldquo;science nerd&rdquo; always took a very scientific, technical
-              approach to fighting and felt what he was teaching was less an art and more a
-              science, so he began calling his style &ldquo;Fight Science.&rdquo; Several
-              students expressed an interest to fight, but MMA was not yet legal in California.
-              Several of the students and Ian would travel to Tijuana on weekends to fight.
-              Shortly thereafter the term MMA was popularized and it became legal and sanctioned
-              in California. Two of those original students Chad George and Julian Rush
-              eventually became 2 of the first champions under California-sanctioned MMA.
+              Ian, being a &ldquo;science nerd&rdquo; always took a very
+              scientific, technical approach to fighting and felt what he was
+              teaching was less an art and more a science, so he began calling
+              his style &ldquo;Fight Science.&rdquo; Several students expressed
+              an interest to fight, but MMA was not yet legal in California.
+              Several of the students and Ian would travel to Tijuana on
+              weekends to fight. Shortly thereafter the term MMA was popularized
+              and it became legal and sanctioned in California. Two of those
+              original students Chad George and Julian Rush eventually became 2
+              of the first champions under California-sanctioned MMA.
             </p>
             <p className="mb-4 text-[1.05rem] text-text-muted">
-              Julian and Ian have maintained a strong relationship and continued to refine and
-              coach for nearly 15 years and over the years have had fighters in every major and
-              local organization there is, producing several champions both pro and amateur, for
-              shows like RFA, CXF, Tachi Palace, BAMMA, U of MMA, Spar Star, TFA and many more.
-              In Aug 2017, they along with another one of the early students and fighters, Leo
-              Hirai, opened the first ever Fight Science gym in Mid City, L.A.
+              Julian and Ian have maintained a strong relationship and continued
+              to refine and coach for nearly 15 years and over the years have
+              had fighters in every major and local organization there is,
+              producing several champions both pro and amateur, for shows like
+              RFA, CXF, Tachi Palace, BAMMA, U of MMA, Spar Star, TFA and many
+              more. In Aug 2017, they along with another one of the early
+              students and fighters, Leo Hirai, opened the first ever Fight
+              Science gym in Mid City, L.A.
             </p>
           </div>
         </Container>
@@ -142,7 +158,10 @@ export default function Home() {
       </section>
 
       {/* TEAM */}
-      <section id="team" className="scroll-mt-[90px] bg-bg-alt py-16 md:py-[90px]">
+      <section
+        id="team"
+        className="scroll-mt-[90px] bg-bg-alt py-16 md:py-[90px]"
+      >
         <Container>
           <Eyebrow center>Meet Our Team</Eyebrow>
           <SectionHeading center>Coaches &amp; Fighters</SectionHeading>
@@ -156,14 +175,25 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section id="testimonials" className="scroll-mt-[90px] py-16 md:py-[90px]">
+      <section
+        id="testimonials"
+        className="scroll-mt-[90px] py-16 md:py-[90px]"
+      >
         <Container>
           <Eyebrow center>What Others Have To Say</Eyebrow>
           <SectionHeading center>Reviews</SectionHeading>
 
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {testimonials.map((testimonial) => (
-              <TestimonialCard key={testimonial.author} testimonial={testimonial} />
+            {testimonials.map((testimonial, i) => (
+              <TestimonialCard
+                key={testimonial.author}
+                className={
+                  i === testimonials.length - 1 && testimonials.length % 2 === 1
+                    ? "md:col-span-2"
+                    : undefined
+                }
+                testimonial={testimonial}
+              />
             ))}
           </div>
         </Container>
@@ -176,15 +206,18 @@ export default function Home() {
             <Eyebrow>Get Started</Eyebrow>
             <SectionHeading>Come Train With Us</SectionHeading>
             <p className="text-text-muted">
-              Your first class is on us. Reach out and we&rsquo;ll get you set up with a free
-              trial class.
+              Your first class is on us. Reach out and we&rsquo;ll get you set
+              up with a free trial class.
             </p>
             <ul className="mb-8 mt-6 list-none">
               <li className="flex flex-col gap-0.5 border-b border-border py-3.5">
                 <strong className="font-head text-[0.85rem] tracking-wide text-accent">
                   Email
                 </strong>
-                <a href={`mailto:${SITE.email}`} className="text-text hover:text-accent">
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="text-text hover:text-accent"
+                >
                   {SITE.email}
                 </a>
               </li>
@@ -192,7 +225,10 @@ export default function Home() {
                 <strong className="font-head text-[0.85rem] tracking-wide text-accent">
                   Call
                 </strong>
-                <a href={`tel:${SITE.phoneHref}`} className="text-text hover:text-accent">
+                <a
+                  href={`tel:${SITE.phoneHref}`}
+                  className="text-text hover:text-accent"
+                >
                   {SITE.phone}
                 </a>
               </li>
@@ -203,7 +239,10 @@ export default function Home() {
                 <span className="text-text-muted">{SITE.address}</span>
               </li>
             </ul>
-            <Button href={`mailto:${SITE.email}?subject=Free%20Trial%20Request`} size="lg">
+            <Button
+              href={`mailto:${SITE.email}?subject=Free%20Trial%20Request`}
+              size="lg"
+            >
               Request Your Free Trial
             </Button>
           </div>
@@ -213,7 +252,7 @@ export default function Home() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               src={`https://www.google.com/maps?q=${encodeURIComponent(
-                SITE.address
+                SITE.address,
               )}&output=embed`}
               className="h-full w-full border-0"
             />
